@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    ports:
+      - 8080:80
+    networks:
+      - frontend
+
+  backend:
+    build:
+      context: ./lib_catalog
+      dockerfile: Dockerfile.backend
+    ports:
+      - 8000:8000
+    networks:
+      - backend
+    depends_on:
+      - database
+
+  database:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django
+      POSTGRES_DB: django
+    networks:
+      - backend
+    volumes:
+       - ./lib_catalog/postgres:/var/lib/postgresql/data
+
+networks:
+  backend:
+  frontend:
+
+volumes:
+  postgres:

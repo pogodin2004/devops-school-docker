@@ -4,10 +4,10 @@
    
 ![](img/network_frontend.png)
 
-   Output:
 
 # Create frontend
-   
+
+   Output:
 ![](img/frontend_build.png)
 
    Output:
